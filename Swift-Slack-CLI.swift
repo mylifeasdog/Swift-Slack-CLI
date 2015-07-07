@@ -1,6 +1,7 @@
 #!/usr/bin/env xcrun swift -F Framework
 
 import CLIKit
+import PrettyColors
 
 typealias JSONDictionary = [String: AnyObject]
 
@@ -100,20 +101,23 @@ func list(type: Type, token: String) -> [JSONDictionary]?
             }
             else
             {
-                let errorMessage = jsonResult["error"] as? String ?? "Unknown error"
-                print("Failed from \"list\" with error message: \(errorMessage)")
+                let reason = jsonResult["error"] as? String ?? "Unknown error"
+                let errorMessage: String = Color.Wrap(foreground: .Red).wrap("Failed from \"list\" with error message: \(reason)")
+                print(errorMessage)
                 return nil
             }
 		}
 		else
         {
-            print("Failed from \"list\" with error message: Unknown error")
+            let errorMessage: String = Color.Wrap(foreground: .Red).wrap("Failed from \"list\" with error message: Unknown error")
+            print(errorMessage)
 			return nil
 		}
     }
     catch let error as NSError
     {
-        print("Failed from \"list\" with request error: \(error)")
+        let errorMessage: String = Color.Wrap(foreground: .Red).wrap("Failed from \"list\" with request error: \(error)")
+        print(errorMessage)
 		return nil
     }
 }
@@ -133,22 +137,26 @@ func postMessage(id: String, text: String, token: String)
         {
             if (ok)
             {
-                print("success")
+                let message: String = Color.Wrap(foreground: .Green).wrap("Success")
+                print(message)
             }
             else
             {
-                let errorMessage = jsonResult["error"] as? String ?? "Unknown error"
-                print("Failed from \"postMessage\" with error message: \(errorMessage)")
+                let reason = jsonResult["error"] as? String ?? "Unknown error"
+                let errorMessage: String = Color.Wrap(foreground: .Red).wrap("Failed from \"postMessage\" with error message: \(reason)")
+                print(errorMessage)
             }
         }
         else
         {
-            print("Failed from \"postMessage\" with error message: Unknown error")
+            let errorMessage: String = Color.Wrap(foreground: .Red).wrap("Failed from \"postMessage\" with error message: Unknown error")
+            print(errorMessage)
         }
     }
     catch let error as NSError
     {
-        print("Failed from \"postMessage\" with request error: \(error)")
+        let errorMessage: String = Color.Wrap(foreground: .Red).wrap("Failed from \"postMessage\" with request error: \(error)")
+        print(errorMessage)
     }
 }
 
@@ -192,38 +200,45 @@ manager.register("post", "Post to a channel or group") { argv in
                 
                 if let targetCommunity = targetCommunity
                 {
-                    print("Posting \"\(message)\" to \(targetCommunity.label()) ...")
+                    let message: String = Color.Wrap(foreground: .Green).wrap("Posting \"\(message)\" to \(targetCommunity.label()) ...")
+                    print(message)
                     postMessage(targetCommunity.id, text: message, token: token)
                 }
                 else
                 {
                     if (Type.Channel.apiKey().hasPrefix(type))
                     {
-                        print("Error: Unknown \(Type.Channel.rawValue).")
+                        let errorMessage: String = Color.Wrap(foreground: .Red).wrap("Error: Unknown \(Type.Channel.rawValue).")
+                        print(errorMessage)
                     }
                     else if (Type.Group.apiKey().hasPrefix(type))
                     {
-                        print("Error: Unknown \(Type.Channel.rawValue).")
+                        let errorMessage: String = Color.Wrap(foreground: .Red).wrap("Error: Unknown \(Type.Channel.rawValue).")
+                        print(errorMessage)
                     }
                     else
                     {
-                        print("Error: Unknown type.")
+                        let errorMessage: String = Color.Wrap(foreground: .Red).wrap("Error: Unknown type.")
+                        print(errorMessage)
                     }
                 }
             }
             else
             {
-                print("Error: Unsupported type.")
+                let errorMessage: String = Color.Wrap(foreground: .Red).wrap("Error: Unsupported type.")
+                print(errorMessage)
             }
         }
         else
         {
-            print("Error: Empty message.")
+            let errorMessage: String = Color.Wrap(foreground: .Red).wrap("Error: Empty message.")
+            print(errorMessage)
         }
     }
     else
     {
-        print("Error: Type not specified.")
+        let errorMessage: String = Color.Wrap(foreground: .Red).wrap("Error: Type not specified.")
+        print(errorMessage)
     }
 }
 

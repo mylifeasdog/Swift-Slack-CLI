@@ -7,17 +7,17 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
-	<string>CLIKit</string>
+	<string>PrettyColors</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.cocode.CLIKit</string>
+	<string>com.jdhealy.PrettyColors</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>CLIKit</string>
+	<string>PrettyColors</string>
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>2.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -37,6 +37,6 @@
 	<key>DTXcodeBuild</key>
 	<string>7A121l</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2014 Cocode. All rights reserved.</string>
+	<string>Copyright © 2014 J.D. Healy. All rights reserved.</string>
 </dict>
 </plist>
