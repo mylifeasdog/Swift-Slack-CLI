@@ -1,0 +1,10 @@
+framework module CLIKit {
+  umbrella header "CLIKit.h"
+
+  export *
+  module * { export * }
+}
+
+module CLIKit.Swift {
+    header "CLIKit-Swift.h"
+}
